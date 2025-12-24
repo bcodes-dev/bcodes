@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
 
 const Page = ({ title }: { title: string }) => (
@@ -19,7 +19,7 @@ const Page = ({ title }: { title: string }) => (
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
-  <BrowserRouter>
+  <HashRouter>
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/recepies" element={<Page title="Recepies" />} />
@@ -27,5 +27,5 @@ root.render(
       <Route path="/pictures" element={<Page title="Pictures" />} />
       <Route path="/code" element={<Page title="Code" />} />
     </Routes>
-  </BrowserRouter>
+  </HashRouter>
 );
