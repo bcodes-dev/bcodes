@@ -22,10 +22,10 @@ root.render(
   <HashRouter>
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="/recepies" element={<Page title="Recepies" />} />
-      <Route path="/panels" element={<Page title="Panels" />} />
-      <Route path="/pictures" element={<Page title="Pictures" />} />
-      <Route path="/code" element={<Page title="Code" />} />
+      <Route path="/recepies" element={<Page title="Recepies!" />} />
+      <Route path="/panels" element={<Page title="Panels!" />} />
+      <Route path="/pictures" element={<Page title="Pictures!" />} />
+      <Route path="/code" element={<Page title="Code!" />} />
     </Routes>
   </HashRouter>
 );
