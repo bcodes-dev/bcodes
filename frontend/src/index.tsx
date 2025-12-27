@@ -1,7 +1,7 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
+import Recepies from "./pages/recepies";
 
 const Page = ({ title }: { title: string }) => (
   <div style={{
@@ -22,10 +22,10 @@ root.render(
   <HashRouter>
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="/recepies" element={<Page title="Recepies!" />} />
-      <Route path="/panels" element={<Page title="Panels!" />} />
-      <Route path="/pictures" element={<Page title="Pictures!" />} />
-      <Route path="/code" element={<Page title="Code!" />} />
+      <Route path="/recepies" element={<Recepies />} />
+      <Route path="/panels" element={<Page title="Panels" />} />
+      <Route path="/pictures" element={<Page title="Pictures" />} />
+      <Route path="/code" element={<Page title="Code" />} />
     </Routes>
   </HashRouter>
 );

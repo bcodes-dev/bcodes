@@ -3,21 +3,41 @@ html, body, #root {
   margin: 0;
 }
 
-.container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
-  height: 100%;
+.page {
+  background-image: url("/images/main-bg.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
+
+.box {
+  width: 300px;
+  height: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  padding: 20px;
+  border-radius: 20px;
+  background: #111;
+}
+
+
 .tile {
+  height: 60px;
+
   position: relative;
   border: none;
   background-size: cover;
   background-position: center;
   cursor: pointer;
+
   filter: blur(0.5px);
   transition: filter 0.3s, transform 0.3s;
+  border-radius: 14px;
 }
+
 
 .tile:hover {
   filter: blur(0);
@@ -30,7 +50,7 @@ html, body, #root {
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: bold;
   background: rgba(0, 0, 0, 0.3);
   padding: 10px 20px;
