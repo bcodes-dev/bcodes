@@ -13,7 +13,12 @@ export default function App() {
   const navigate = useNavigate();
 
   return (
-    <div className="page">
+    <div
+      className="page"
+      style={{
+        "--bg-image": `url("/images/main-bg-small.jpg")`,
+      } as React.CSSProperties}
+    >
       <div className="box">
         {buttons.map(({ title, image, path }) => (
           <button
