@@ -2,11 +2,11 @@ import "./App.css";
 import { useNavigate } from "react-router-dom";
 
 const buttons = [
+    { title: "Pictures", image: "/images/pictures.jpg", path: "/pictures" },
   { title: "Recepies", image: "/images/recepies.jpg", path: "/recepies" },
-  { title: "Panels", image: "/images/panels.jpg", path: "/panels" },
-  { title: "Pictures", image: "/images/pictures.jpg", path: "/pictures" },
-  { title: "Code", image: "/images/code.jpg", path: "/code" },
-  { title: "More", image: "/images/more.jpg", path: "/more" },
+  // { title: "Panels", image: "/images/panels.jpg", path: "/panels" },
+  // { title: "Code", image: "/images/code.jpg", path: "/code" },
+  // { title: "More", image: "/images/more.jpg", path: "/more" },
 ];
 
 export default function App() {

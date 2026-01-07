@@ -1,17 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ImageCarousel from "../components/ImageCarousel";
-import { IMAGE_FOLDERS } from "../config/imageFolders";
+import { Image_Folders } from "../config/imageFolders";
 
 export default function Pictures() {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedFolder, setSelectedFolder] = useState<typeof IMAGE_FOLDERS[0] | null>(
-    IMAGE_FOLDERS.length > 0 ? IMAGE_FOLDERS[0] : null
-  );
+  const [selectedFolder, setSelectedFolder] = useState<typeof Image_Folders[0] | null>(null);
+  const [randomImage, setRandomImage] = useState<string | null>(null);
 
-  const handleFolderSelect = (folder: typeof IMAGE_FOLDERS[0]) => {
+  // Get a random image from all folders
+  const getRandomImage = () => {
+    const allImages: string[] = [];
+    Image_Folders.forEach((folder) => {
+      for (let i = 1; i <= folder.imageCount; i++) {
+        const padded = String(i).padStart(2, "0");
+        allImages.push(`${folder.path}/${folder.id}-${padded}.jpg`);
+      }
+    });
+    return allImages.length > 0
+      ? allImages[Math.floor(Math.random() * allImages.length)]
+      : null;
+  };
+
+  useEffect(() => {
+    setRandomImage(getRandomImage());
+  }, []);
+
+  const handleFolderSelect = (folder: typeof Image_Folders[0]) => {
     setSelectedFolder(folder);
     setMenuOpen(false);
   };
@@ -30,7 +47,7 @@ export default function Pictures() {
       </button>
 
       <button
-        style={{ ...styles.headerButton, left: "4.5rem", opacity: menuOpen ? 1 : 0, pointerEvents: menuOpen ? "auto" : "none", transform: `translateX(${menuOpen ? 0 : -100}px)` }}
+        style={{ ...styles.headerButton, left: "5.5rem", opacity: menuOpen ? 1 : 0, pointerEvents: menuOpen ? "auto" : "none", transform: `translateX(${menuOpen ? 0 : -100}px)` }}
         onClick={() => setModalOpen(true)}
         title="Information"
       >
@@ -38,7 +55,7 @@ export default function Pictures() {
       </button>
 
       <button
-        style={{ ...styles.headerButton, left: "7.5rem", opacity: menuOpen ? 1 : 0, pointerEvents: menuOpen ? "auto" : "none", transform: `translateX(${menuOpen ? 0 : -100}px)` }}
+        style={{ ...styles.headerButton, left: "10rem", opacity: menuOpen ? 1 : 0, pointerEvents: menuOpen ? "auto" : "none", transform: `translateX(${menuOpen ? 0 : -100}px)` }}
         onClick={() => navigate("/")}
         title="Back to home"
       >
@@ -71,10 +88,9 @@ export default function Pictures() {
         }}
       >
         <div style={styles.menuHeader}>
-          <h2></h2>
         </div>
         <div style={styles.menuList}>
-          {IMAGE_FOLDERS.map((folder) => (
+          {Image_Folders.map((folder) => (
             <button
               key={folder.id}
               style={{
@@ -107,9 +123,15 @@ export default function Pictures() {
             folderName={selectedFolder.id}
           />
         ) : (
-          <div style={styles.emptyState}>
-            <h1>No albums available</h1>
-            <p>Please add folders to the configuration</p>
+          <div style={styles.welcomeContainer}>
+            <img
+              src={randomImage || ""}
+              alt="Random picture"
+              style={styles.welcomeImage}
+            />
+            <p style={styles.welcomeText}>
+              Welcome to my pictures page, select a folder in the menu on the left
+            </p>
           </div>
         )}
       </div>
@@ -171,7 +193,7 @@ const styles: Record<string, React.CSSProperties> = {
     position: "fixed",
     top: 0,
     left: 0,
-    width: "280px",
+    width: "220px",
     height: "100vh",
     backgroundColor: "#222",
     boxShadow: "2px 0 10px rgba(0,0,0,0.5)",
@@ -184,15 +206,15 @@ const styles: Record<string, React.CSSProperties> = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "1.5rem",
+    padding: "2.5rem",
     borderBottom: "1px solid #444",
-    gap: "1rem",
   },
   menuList: {
     display: "flex",
     flexDirection: "column",
     gap: "0.5rem",
     padding: "1rem",
+    paddingTop: "1.5rem",
     overflowY: "auto",
   },
   menuItem: {
@@ -230,6 +252,30 @@ const styles: Record<string, React.CSSProperties> = {
     alignItems: "center",
     height: "100%",
     gap: "1rem",
+  },
+  welcomeContainer: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%",
+    width: "100%",
+    gap: "2rem",
+    padding: "2rem",
+    boxSizing: "border-box",
+  },
+  welcomeImage: {
+    maxWidth: "100%",
+    maxHeight: "50%",
+    objectFit: "contain",
+    borderRadius: "8px",
+  },
+  welcomeText: {
+    fontSize: "1.2rem",
+    textAlign: "center",
+    color: "#fff",
+    margin: "0",
+    maxWidth: "600px",
   },
   modalOverlay: {
     position: "fixed",
