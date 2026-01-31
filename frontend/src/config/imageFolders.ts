@@ -20,7 +20,7 @@ export const Image_Folders = [
     id: "2026-01-09",
     label: "January 9, 2026",
     path: "/images/2026-01-09",
-    imageCount: 7,
+    imageCount: 6,
   },
   {
     id: "2026-01-05",
