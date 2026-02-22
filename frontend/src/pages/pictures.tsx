@@ -117,7 +117,7 @@ export default function Pictures() {
       <div className="pictures-content">
         {selectedFolder ? (
           <ImageCarousel
-            folderPath={selectedFolder.path}
+            folderPath={selectedFolder.path!}
             imageCount={selectedFolder.imageCount}
             folderName={selectedFolder.id}
           />
