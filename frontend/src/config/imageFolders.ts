@@ -5,6 +5,16 @@ import path from "path";
 
 export const Image_Folders = [
   {
+    id: "2026-02-21",
+    label: "February 21, 2026",
+    imageCount: 5,
+  },
+  {
+    id: "2026-02-20",
+    label: "February 20, 2026",
+    imageCount: 4,
+  },
+  {
     id: "2026-01-23",
     label: "January 23, 2026",
     path: "/images/2026-01-23",
