@@ -1,92 +1,13 @@
-// Configuration for image folders in public/images/
-// Add new folders here to make them available in the Pictures page
+// This file dynamically loads a generated JSON index if available.
+// A build-time script (`scripts/generateImageFolders.js`) writes
+// `src/config/imageFolders.auto.json` based on `public/images`.
 
-import path from "path";
+let data: { Image_Folders: any[] } | null = null;
+try {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  data = require('./imageFolders.auto.json');
+} catch (e) {
+  data = null;
+}
 
-export const Image_Folders = [
-  {
-    id: "2026-02-21",
-    label: "February 21, 2026",
-    path: "/images/2026-02-21",
-    imageCount: 5,
-  },
-  {
-    id: "2026-02-20",
-    label: "February 20, 2026",
-    path: "/images/2026-02-20",
-    imageCount: 4,
-  },
-  {
-    id: "2026-01-23",
-    label: "January 23, 2026",
-    path: "/images/2026-01-23",
-    imageCount: 7,
-  },
-  {
-    id: "2026-01-16",
-    label: "January 16, 2026",
-    path: "/images/2026-01-16",
-    imageCount: 6,
-  },
-  {
-    id: "2026-01-09",
-    label: "January 9, 2026",
-    path: "/images/2026-01-09",
-    imageCount: 6,
-  },
-  {
-    id: "2026-01-05",
-    label: "January 5, 2026",
-    path: "/images/2026-01-05",
-    imageCount: 7,
-  },
-  {
-    id: "2026-01-03",
-    label: "January 3, 2026",
-    path: "/images/2026-01-03",
-    imageCount: 5,
-  },
-  {
-    id: "2025-12-28",
-    label: "December 28, 2025",
-    path: "/images/2025-12-28",
-    imageCount: 6,
-  },
-  {
-    id: "2025-12-21",
-    label: "December 21, 2025",
-    path: "/images/2025-12-21",
-    imageCount: 5,
-  },
-  {
-    id: "2025-12-13",
-    label: "December 13, 2025",
-    path: "/images/2025-12-13",
-    imageCount: 4,
-  },
-  {
-    id: "2025-11-21",
-    label: "November 21, 2025",
-    path: "/images/2025-11-21",
-    imageCount: 4,
-  },
-  {
-    id: "2025-11-02",
-    label: "November 2, 2025",
-    path: "/images/2025-11-02",
-    imageCount: 6,
-  },
-  {
-    id: "2025-09-07",
-    label: "September 7, 2025",
-    path: "/images/2025-09-07",
-    imageCount: 5,
-  },
-  {
-    id: "2025-09-05",
-    label: "September 5, 2025",
-    path: "/images/2025-09-05",
-    imageCount: 5,
-  },
-  
-];
+export const Image_Folders = (data && data.Image_Folders) || [];

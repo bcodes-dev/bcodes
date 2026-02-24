@@ -8,9 +8,16 @@ html, body, #root {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #1a1a1a;
 
   position: relative; /* REQUIRED */
   overflow: hidden;
+}
+
+.title {
+  font-size: 1.5rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
 }
 
 .page::before {
@@ -76,4 +83,15 @@ html, body, #root {
   background: rgba(0, 0, 0, 0.3);
   padding: 10px 20px;
   border-radius: 8px;
+}
+
+.welcome-description {
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
 }

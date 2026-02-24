@@ -3,6 +3,7 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
 import Recepies from "./pages/recepies";
 import Pictures from "./pages/pictures";
+import Layout from "./components/Layout";
 
 const Page = ({ title }: { title: string }) => (
   <div style={{
@@ -22,11 +23,10 @@ const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
   <HashRouter>
     <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="/recepies" element={<Recepies />} />
-      <Route path="/panels" element={<Page title="Panels" />} />
-      <Route path="/pictures" element={<Pictures />} />
-      <Route path="/code" element={<Page title="Code" />} />
+      <Route element={<Layout><App /></Layout>} path = "/" />
+      <Route element={<Layout><Recepies /></Layout>} path = "/recepies" />
+      <Route element={<Layout><Pictures /></Layout>} path = "/pictures" />
+      <Route element={<Layout><Page title="Panels" /></Layout>} path = "/panels" />
     </Routes>
   </HashRouter>
 );

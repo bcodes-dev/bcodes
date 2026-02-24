@@ -1,28 +1,15 @@
 .pictures-container {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #1a1a1a;
   color: #fff;
-  overflow: hidden;
+  overflow: auto;
   width: 100%;
+  box-sizing: border-box;
+  padding-top: 1rem;
 }
 
-.pictures-hamburger-button {
-  position: fixed;
-  top: 1rem;
-  left: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 2.5rem;
-  height: 2.5rem;
-  background-color: #007bff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  z-index: 1001;
-  padding: 0.5rem;
-}
+/* hamburger/menu removed — layout provides global navigation */
 
 .pictures-header-button {
   position: fixed;
@@ -111,10 +98,12 @@
 .pictures-content {
   flex: 1;
   width: 100%;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+  box-sizing: border-box;
 }
 
 .pictures-welcome-container {
@@ -134,6 +123,40 @@
   max-height: 50%;
   object-fit: contain;
   border-radius: 8px;
+}
+
+/* Folder and thumbnails layout */
+.folder-section {
+  margin-bottom: 1.25rem;
+}
+
+.folder-title {
+  font-size: 0.85rem;
+  color: #ddd;
+  margin: 0 0 0.5rem 0;
+  padding-left: 0.25rem;
+}
+
+.thumbnails-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.thumbnail {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.thumbnail:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
 }
 
 .pictures-welcome-text {

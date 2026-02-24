@@ -1,36 +1,22 @@
 import "./App.css";
-import { useNavigate } from "react-router-dom";
-
-const buttons = [
-  { title: "Pictures", image: "/images/pictures.jpg", path: "/pictures" },
-  { title: "Recepies", image: "/images/recepies.jpg", path: "/recepies" },
-  // { title: "Panels", image: "/images/panels.jpg", path: "/panels" },
-  // { title: "Code", image: "/images/code.jpg", path: "/code" },
-  // { title: "More", image: "/images/more.jpg", path: "/more" },
-];
 
 export default function App() {
-  const navigate = useNavigate();
-
   return (
     <div
       className="page"
       style={{
-        "--bg-image": `url("/images/main-bg-small.jpg")`,
-      } as React.CSSProperties}
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        minHeight: "100vh",
+        padding: "2rem",
+        flexDirection: "column",
+      }}
     >
-      <div className="box">
-        {buttons.map(({ title, image, path }) => (
-          <button
-            key={path}
-            className="tile"
-            style={{ backgroundImage: `url(${image})` }}
-            onClick={() => navigate(path)}
-          >
-            <span>{title}</span>
-          </button>
-        ))}
-      </div>
+      <h1 className="title">Welcome to my page!</h1>
+      <p className="welcome-description">
+        This web application is a combination of portfolio's so I could practice with programming javascript/typescript and react. Feel free to look around, check out my photo's, recipes or code projects. You can also see the source code for this application on Github.
+      </p>
     </div>
   );
 }

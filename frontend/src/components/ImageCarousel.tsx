@@ -1,16 +1,27 @@
 import React, { useState, useEffect } from "react";
+import CloseIcon from '@mui/icons-material/Close';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import "./ImageCarousel.css";
 
 interface ImageCarouselProps {
   folderPath: string;
   imageCount: number;
   folderName: string;
+  initialIndex?: number;
+  onClose?: () => void;
+  onNextFolder?: () => void;
+  onPrevFolder?: () => void;
 }
 
 export default function ImageCarousel({
   folderPath,
   imageCount,
   folderName,
+  initialIndex,
+  onClose,
+  onNextFolder,
+  onPrevFolder,
 }: ImageCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [images, setImages] = useState<string[]>([]);
@@ -23,15 +34,35 @@ export default function ImageCarousel({
       return `${folderPath}/${folderName}-${padded}.jpg`;
     });
     setImages(imagePaths);
-    setCurrentIndex(0);
-  }, [folderPath, imageCount, folderName]);
+    // If an initialIndex is provided, clamp it to valid range
+    const start = typeof initialIndex === 'number' ? Math.max(0, Math.min(initialIndex, imagePaths.length - 1)) : 0;
+    setCurrentIndex(start);
+  }, [folderPath, imageCount, folderName, initialIndex]);
 
   const goToPrevious = () => {
-    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    setCurrentIndex((prev) => {
+      if (prev === 0) {
+        if (onPrevFolder) {
+          onPrevFolder();
+          return prev; // keep index until parent switches folder
+        }
+        return images.length - 1;
+      }
+      return prev - 1;
+    });
   };
 
   const goToNext = () => {
-    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    setCurrentIndex((prev) => {
+      if (prev === images.length - 1) {
+        if (onNextFolder) {
+          onNextFolder();
+          return prev; // keep index until parent switches folder
+        }
+        return 0;
+      }
+      return prev + 1;
+    });
   };
 
   const getPreviousIndex = () =>
@@ -43,8 +74,27 @@ export default function ImageCarousel({
     return <div className="no-images">No images found</div>;
   }
 
+  // derive a human-friendly label from the folderName (YYYY-MM-DD -> Month D, YYYY)
+  let folderLabel = folderName;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(folderName)) {
+    try {
+      const d = new Date(folderName);
+      folderLabel = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    } catch (e) {
+      // leave folderName as-is
+    }
+  }
+
   return (
     <div className="carousel-container">
+      <div className="carousel-folder-label">{folderLabel}</div>
+      <button
+        className="carousel-close-button"
+        onClick={() => onClose && onClose()}
+        title="Close"
+      >
+        <CloseIcon style={{ fontSize: 18, color: '#111' }} />
+      </button>
       {/* Left Arrow Button */}
       <button
         onClick={goToPrevious}
@@ -52,7 +102,7 @@ export default function ImageCarousel({
         style={{ left: "1rem" }}
         title="Previous image"
       >
-        ←
+        <ArrowBackIosNewIcon style={{ fontSize: 20, color: '#111' }} />
       </button>
 
       {/* Left Image (Blurred) */}
@@ -69,9 +119,6 @@ export default function ImageCarousel({
           alt={`${folderName} - ${currentIndex + 1}`}
           className="carousel-center-image"
         />
-        <div className="carousel-counter">
-          {currentIndex + 1} / {images.length}
-        </div>
       </div>
 
       {/* Right Image (Blurred) */}
@@ -88,7 +135,7 @@ export default function ImageCarousel({
         style={{ right: "1rem" }}
         title="Next image"
       >
-        →
+        <ArrowForwardIosIcon style={{ fontSize: 20, color: '#111' }} />
       </button>
     </div>
   );

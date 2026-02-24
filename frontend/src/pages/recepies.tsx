@@ -18,8 +18,8 @@ const recipes = [
 
 export default function Recepies() {
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1>Recepies</h1>
+    <div style={{ padding: "2rem", backgroundColor: "#1a1a1a"}}>
+      <h1 style={{ color: "white" }}>Recepies</h1>
 
       {recipes.map((recipe) => (
         <Accordion key={recipe.name}>

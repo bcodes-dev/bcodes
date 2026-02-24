@@ -3,66 +3,124 @@
   align-items: center;
   justify-content: center;
   gap: 0;
-  background-color: #1a1a1a;
-  height: 100vh;
+  background-color: transparent;
+
+  /* fixed overlay under navbar so contents never cause page scroll */
+  position: fixed;
+  top: var(--navbar-height, 64px);
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
+
   color: #fff;
   overflow: hidden;
-  position: relative;
+  z-index: 500;
 }
+
+/* ========================= */
+/* Arrow Buttons */
+/* ========================= */
 
 .carousel-arrow-button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 123, 255, 0);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
   border: none;
-  color: #fff;
-  font-size: 3rem;
+  background: rgba(255,255,255,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
   cursor: pointer;
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
-  transition: all 0.3s;
   z-index: 50;
 }
 
 .carousel-arrow-button:hover {
-  background: rgba(0, 123, 255, 0.2);
+  background: rgba(255,255,255,1);
 }
 
-.carousel-side-image {
-  width: 20%;
-  height: 100%;
-  object-fit: contain;
-  filter: blur(8px);
-  flex-shrink: 0;
-}
+/* ========================= */
+/* Center Image + Border */
+/* ========================= */
 
 .carousel-center-image-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  height: 100%;
-  overflow: hidden;
+  display: inline-block; /* shrink-wrap to image */
+  border: 20px solid #fff;
+  border-radius: 3px;
+  box-sizing: border-box;
+
+  /* Ensure it never exceeds viewport */
+  max-width: calc(100vw - 220px);
+  max-height: calc(100vh - 100px);
+
   position: relative;
 }
 
+/* Image controls sizing */
 .carousel-center-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  display: block;
+
+  /* Maintain aspect ratio */
+  width: auto;
+  height: auto;
+
+  /* Constrain to viewport */
+  max-width: calc(100vw - 220px);
+  max-height: calc(100vh - 200px);
 }
 
-.carousel-counter {
+/* ========================= */
+/* Counter */
+/* ========================= */
+
+/* image counter removed */
+
+/* ========================= */
+/* Close Button */
+/* ========================= */
+
+.carousel-close-button {
   position: absolute;
-  bottom: 1.5rem;
-  font-size: 1.1rem;
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  top: 8px;
+  right: 8px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  z-index: 60;
 }
+
+.carousel-close-button:hover {
+  background: rgba(255,255,255,1);
+}
+
+/* Folder label centered at top of carousel */
+.carousel-folder-label {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  background: transparent;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  z-index: 60;
+  font-size: 0.95rem;
+}
+
+/* ========================= */
+/* No Images State */
+/* ========================= */
 
 .no-images {
   padding: 2rem;
