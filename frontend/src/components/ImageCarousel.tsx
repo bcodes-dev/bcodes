@@ -93,11 +93,6 @@ export default function ImageCarousel({
     };
   }, []);
 
-  const getPreviousIndex = () =>
-    currentIndex === 0 ? images.length - 1 : currentIndex - 1;
-  const getNextIndex = () =>
-    currentIndex === images.length - 1 ? 0 : currentIndex + 1;
-
   if (images.length === 0) {
     return <div className="no-images">No images found</div>;
   }

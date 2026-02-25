@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ImageCarousel from "../components/ImageCarousel";
 import { Image_Folders } from "../config/imageFolders";
 import "./pictures.css";
@@ -6,25 +6,6 @@ import "./pictures.css";
 export default function Pictures() {
   const [selectedFolder, setSelectedFolder] = useState<typeof Image_Folders[0] | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
-  const [randomImage, setRandomImage] = useState<string | null>(null);
-
-  // Get a random image from all folders
-  const getRandomImage = () => {
-    const allImages: string[] = [];
-    Image_Folders.forEach((folder) => {
-      for (let i = 1; i <= folder.imageCount; i++) {
-        const padded = String(i).padStart(2, "0");
-        allImages.push(`${folder.path}/${folder.id}-${padded}.jpg`);
-      }
-    });
-    return allImages.length > 0
-      ? allImages[Math.floor(Math.random() * allImages.length)]
-      : null;
-  };
-
-  useEffect(() => {
-    setRandomImage(getRandomImage());
-  }, []);
 
   const handleThumbnailClick = (folder: typeof Image_Folders[0], index: number) => {
     setSelectedFolder(folder);
@@ -90,17 +71,6 @@ export default function Pictures() {
                 </div>
               </section>
             ))}
-
-            <div className="pictures-welcome-container">
-              <img
-                src={randomImage || ""}
-                alt="Random picture"
-                className="pictures-welcome-image"
-              />
-              <p className="pictures-welcome-text">
-                Welcome to my pictures page, click a folder row to open the carousel
-              </p>
-            </div>
           </div>
         )}
       </div>
