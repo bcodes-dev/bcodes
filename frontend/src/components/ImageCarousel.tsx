@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -25,6 +25,9 @@ export default function ImageCarousel({
 }: ImageCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [images, setImages] = useState<string[]>([]);
+  const [flashSide, setFlashSide] = useState<"left" | "right" | null>(null);
+  const [flashActive, setFlashActive] = useState(false);
+  const flashTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     // Generate image paths based on folder naming convention
@@ -65,6 +68,31 @@ export default function ImageCarousel({
     });
   };
 
+  const triggerMobileFlash = (side: "left" | "right") => {
+    setFlashSide(side);
+    setFlashActive(false);
+
+    requestAnimationFrame(() => {
+      setFlashActive(true);
+    });
+
+    if (flashTimeoutRef.current) {
+      clearTimeout(flashTimeoutRef.current);
+    }
+
+    flashTimeoutRef.current = setTimeout(() => {
+      setFlashActive(false);
+    }, 100);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (flashTimeoutRef.current) {
+        clearTimeout(flashTimeoutRef.current);
+      }
+    };
+  }, []);
+
   const getPreviousIndex = () =>
     currentIndex === 0 ? images.length - 1 : currentIndex - 1;
   const getNextIndex = () =>
@@ -87,6 +115,11 @@ export default function ImageCarousel({
 
   return (
     <div className="carousel-container">
+      <div
+        className={`carousel-mobile-flash ${flashActive ? "active" : ""} ${
+          flashSide === "left" ? "left" : ""
+        } ${flashSide === "right" ? "right" : ""}`}
+      />
       <div className="carousel-folder-label">{folderLabel}</div>
       <button
         className="carousel-close-button"
@@ -118,6 +151,24 @@ export default function ImageCarousel({
           src={images[currentIndex]}
           alt={`${folderName} - ${currentIndex + 1}`}
           className="carousel-center-image"
+        />
+        <button
+          className="carousel-mobile-nav-zone carousel-mobile-nav-prev"
+          onClick={() => {
+            triggerMobileFlash("left");
+            goToPrevious();
+          }}
+          title="Previous image"
+          aria-label="Previous image"
+        />
+        <button
+          className="carousel-mobile-nav-zone carousel-mobile-nav-next"
+          onClick={() => {
+            triggerMobileFlash("right");
+            goToNext();
+          }}
+          title="Next image"
+          aria-label="Next image"
         />
       </div>
 

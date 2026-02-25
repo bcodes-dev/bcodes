@@ -49,7 +49,7 @@
 
 .carousel-center-image-wrapper {
   display: inline-block; /* shrink-wrap to image */
-  border: 20px solid #fff;
+  border: 10px solid #fff;
   border-radius: 3px;
   box-sizing: border-box;
 
@@ -71,6 +71,15 @@
   /* Constrain to viewport */
   max-width: calc(100vw - 220px);
   max-height: calc(100vh - 200px);
+}
+
+/* Mobile transparent tap zones (hidden on desktop) */
+.carousel-mobile-nav-zone {
+  display: none;
+}
+
+.carousel-mobile-flash {
+  display: none;
 }
 
 /* ========================= */
@@ -124,4 +133,92 @@
 
 .no-images {
   padding: 2rem;
+}
+
+/* Mobile: hide arrows and let image use full screen area */
+@media (max-width: 768px) {
+  .carousel-arrow-button {
+    display: none;
+  }
+
+  .carousel-center-image-wrapper {
+    border: none;
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .carousel-center-image {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .carousel-mobile-nav-zone {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    z-index: 20;
+    cursor: pointer;
+    outline: none;
+    box-shadow: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .carousel-mobile-flash {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 20%;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 25;
+    transition: opacity 160ms ease-out;
+  }
+
+  .carousel-mobile-flash.left {
+    left: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0));
+  }
+
+  .carousel-mobile-flash.right {
+    right: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0));
+  }
+
+  .carousel-mobile-flash.active {
+    opacity: 1;
+  }
+
+  .carousel-mobile-nav-zone:focus,
+  .carousel-mobile-nav-zone:focus-visible,
+  .carousel-mobile-nav-zone:active {
+    outline: none;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .carousel-mobile-nav-prev {
+    left: 0;
+  }
+
+  .carousel-mobile-nav-next {
+    right: 0;
+  }
 }
