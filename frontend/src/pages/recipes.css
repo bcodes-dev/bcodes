@@ -1,0 +1,32 @@
+.recipes-page {
+  padding: 2rem;
+  background-color: #1a1a1a;
+  min-height: 100vh;
+}
+
+.recipes-title {
+  color: #e0e0e0;
+  margin-bottom: 1.5rem;
+}
+
+.recipe-name {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.ingredients-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  line-height: 1.2;
+}
+
+.preparation-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  line-height: 1;
+}
+
+.preparation-list li {
+  margin-bottom: 0.4rem;
+}
