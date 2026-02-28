@@ -1,6 +1,6 @@
 .layout {
   /* expose navbar height to children for layout calculations */
-  --navbar-height: 64px;
+  --navbar-height: 42px;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -10,7 +10,7 @@
 .navbar {
   display: flex;
   gap: 2rem;
-  padding: 1rem 2rem;
+  padding: 0.3rem 2rem;
   background-color: #333;
   position: sticky;
   top: 0;
