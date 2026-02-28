@@ -53,6 +53,46 @@ const recipes = [
       "Sprinkle the grated cheese and walnuts on top and put it in the oven for 10 minutes or until the cheese is golden brown."
     ],
   },
+  {
+    name: "Pea Soup",
+    ingredients: [
+      "500gr Split Peas", 
+      "1 Leek", 
+      "1 Carrot",
+      "0.5 Celeriac",
+      "1 Potato",
+      "1 Onion",
+      "Vegetable Sausage",
+      "2 Vegetable Stock Cubes",
+      "Pepper and Salt",
+    ],
+    preparation: [
+      "Rinse the split peas and boil them for 30 minutes in a pot with 2 liters of water and the vegetable stock cubes.", 
+      "Cut the leek, carrot, celeriac, potato, and onion into small pieces.", 
+      "Add the leek, carrot, celeriac and onion to the boiling water and simmer for another 30 minutes.", 
+      "Add the potato, sausage some pepper and salt and simmer for another 30 minutes.", 
+      "Eat tasty!"
+    ],
+  },
+  {
+    name: "Pumpkin Soup",
+    ingredients: [
+      "400 grams Pumpkin",
+      "1 Red Onion",
+      "1 Garlic Clove",
+      "1 Vegetable Sausage",
+      "130 grams lentils",
+      "1 Vegetable Stock Cube",
+      "Nutmeg, paprika or chili powder, pepper",
+    ],
+    preparation: [
+      "Cut the pumpkin, onion and garlic into small pieces.",
+      "Heat some oil into a big pan and stir fry the onion and garlic.",
+      "Add the pumpkin, lentils and all the spices with the vegetable stock together with 700ml of water.",
+      "When the pumpkin is soft (+-15 minutes), blend the soup until smooth.",
+      "Add the sausage, let simmer for 5 minutes and serve."
+    ],
+  }
 ]
 
 export default function Recipes() {
