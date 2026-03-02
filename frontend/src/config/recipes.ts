@@ -1,0 +1,98 @@
+type Recipe = {
+  name: string;
+  ingredients: string[];
+  preparation: string[];
+};
+
+const recipes: Recipe[] = [
+  {
+    name: "Black Pepper Noodles",
+    ingredients: [
+      "Sweet Pointed Pepper", 
+      "Spring Onions", 
+      "Garlic", 
+      "Veggie Pieces", 
+      "Noodles (3 blocks)", 
+      "Cornstarch",
+      "Soy Sauce", 
+      "White Wine Vinegar", 
+      "Brown Sugar", 
+      "Black Pepper", 
+      "Chili Powder"
+    ],
+    preparation: [
+      "Mix 2 tbsp of soy sauce, 1 tbsp of cornstarch and a pinch of black pepper and chili powder in a big bowl.", 
+      "Coat the veggie pieces in this mixture and set aside", 
+      "Mix 6 tbsp of soy sauce, 2 tbsp of white wine vinegar, 1 tbsp of brown sugar and 1 tbsp of black pepper in a soup bowl",
+      "Cut the pepper, spring onions, and garlic into small pieces.", 
+      "Set a pot of water to boil.", 
+      "Heat a pan with some oil and stir-fry the veggie pieces.", 
+      "Add the  garlic, pepper and half of the spring onion and stir-fry until cooked through.", 
+      "Add the noodles to the boiling water and cook.",
+      "Add the soy sauce mixture to the pan and stir until the noodles are done (+-4 minutes).",
+      "Serve with the other half of the spring onion sprinkled on top!"],
+  },
+  {
+    name: "Ravioli Ricotta",
+    ingredients: [
+      "Spinach Ravioli", 
+      "1 Leek", 
+      "250g Ricotta", 
+      "Veggie Minced Meat", 
+      "Couple of Walnuts", 
+      "Grated Cheese"
+    ],
+    preparation: [
+      "Set a pot of water to boil.", 
+      "Cut the leek into small pieces", 
+      "Preheat the oven to 200 degrees Celsius.",
+      "Stirfry the leek and veggie minced meat in a pan until cooked through.", 
+      "Cook the ravioli in the boiling water.",
+      "Mix the ricotta with the leek and veggie minced meat.", 
+      "Mix the ravioli with the ricotta mixture and put it in an oven dish.",
+      "Sprinkle the grated cheese and walnuts on top and put it in the oven for 10 minutes or until the cheese is golden brown."
+    ],
+  },
+  {
+    name: "Split Pea Soup",
+    ingredients: [
+      "500g Split Peas", 
+      "1 Leek", 
+      "1 Carrot",
+      "0.5 Celeriac",
+      "1 Potato",
+      "1 Onion",
+      "Vegetable Sausage",
+      "2 Vegetable Stock Cubes",
+      "Pepper and Salt",
+    ],
+    preparation: [
+      "Rinse the split peas and boil them for 30 minutes in a pot with 2 liters of water and the vegetable stock cubes.", 
+      "Cut the leek, carrot, celeriac, potato, and onion into small pieces.", 
+      "Add the leek, carrot, celeriac and onion to the boiling water and simmer for another 30 minutes.", 
+      "Add the potato, sausage some pepper and salt and simmer for another 30 minutes.", 
+      "Eat tasty!"
+    ],
+  },
+  {
+    name: "Pumpkin Soup",
+    ingredients: [
+      "400g Pumpkin",
+      "1 Red Onion",
+      "1 Garlic Clove",
+      "1 Vegetable Sausage",
+      "130g Lentils",
+      "1 Vegetable Stock Cube",
+      "Nutmeg, paprika or chili powder, pepper",
+    ],
+    preparation: [
+      "Cut the pumpkin, onion and garlic into small pieces.",
+      "Heat some oil into a big pan and stir fry the onion and garlic.",
+      "Add the pumpkin, lentils and all the spices with the vegetable stock together with 700ml of water.",
+      "When the pumpkin is soft (+-15 minutes), blend the soup until smooth.",
+      "Add the sausage, let simmer for 5 minutes and serve."
+    ],
+  }
+];
+
+export default recipes;
