@@ -25,7 +25,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "generate-images": "node scripts/generateImageFolders.js",
+    "normalize-images": "node scripts/normalizeImageExtensions.js",
+    "generate-images": "npm run normalize-images && node scripts/generateImageFolders.js",
     "start": "npm run generate-images && react-scripts start",
     "build": "npm run generate-images && react-scripts build",
     "test": "react-scripts test",
