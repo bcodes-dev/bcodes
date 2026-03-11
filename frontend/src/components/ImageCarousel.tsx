@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -42,7 +42,7 @@ export default function ImageCarousel({
     setCurrentIndex(start);
   }, [folderPath, imageCount, folderName, initialIndex]);
 
-  const goToPrevious = () => {
+  const goToPrevious = useCallback(() => {
     setCurrentIndex((prev) => {
       if (prev === 0) {
         if (onPrevFolder) {
@@ -53,9 +53,9 @@ export default function ImageCarousel({
       }
       return prev - 1;
     });
-  };
+  }, [images.length, onPrevFolder]);
 
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     setCurrentIndex((prev) => {
       if (prev === images.length - 1) {
         if (onNextFolder) {
@@ -66,7 +66,7 @@ export default function ImageCarousel({
       }
       return prev + 1;
     });
-  };
+  }, [images.length, onNextFolder]);
 
   const triggerMobileFlash = (side: "left" | "right") => {
     setFlashSide(side);
@@ -92,6 +92,18 @@ export default function ImageCarousel({
       }
     };
   }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        goToPrevious();
+      } else if (e.key === "ArrowRight") {
+        goToNext();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [goToPrevious, goToNext]);
 
   if (images.length === 0) {
     return <div className="no-images">No images found</div>;

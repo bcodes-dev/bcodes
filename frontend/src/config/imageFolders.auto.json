@@ -1,6 +1,18 @@
 {
   "Image_Folders": [
     {
+      "id": "2026-03-08",
+      "label": "March 8, 2026",
+      "path": "/images/2026-03-08",
+      "imageCount": 3
+    },
+    {
+      "id": "2026-03-06",
+      "label": "March 6, 2026",
+      "path": "/images/2026-03-06",
+      "imageCount": 4
+    },
+    {
       "id": "2026-03-01",
       "label": "March 1, 2026",
       "path": "/images/2026-03-01",
