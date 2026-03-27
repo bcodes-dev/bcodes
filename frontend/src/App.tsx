@@ -14,11 +14,11 @@ export default function App() {
         <Route element={<Layout><Home /></Layout>} path="/" />
         <Route element={<Layout><Recipes /></Layout>} path="/recipes" />
         <Route element={<Layout><Pictures /></Layout>} path="/pictures" />
-        <Route element={<Layout><Projects /></Layout>} path="/projects">
+        {/* <Route element={<Layout><Projects /></Layout>} path="/projects">
           <Route index element={<Project1 />} />
           <Route path="project1" element={<Project1 />} />
           <Route path="project2" element={<Project2 />} />
-        </Route>
+        </Route> */}
       </Routes>
     </HashRouter>
   );
